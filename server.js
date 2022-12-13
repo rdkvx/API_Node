@@ -1,17 +1,8 @@
-const http = require("http")
-const port = 8080
+import app from './src/app.js'
 
-const rotas = {
-    '/' : 'Curso de Node',
-    '/livros' : 'Entrei na pagina de livros',
-    '/autores' : 'Entrei na pagina de autores'
-}
+// primeiro tenta atribuir o valor da porta do processo, se não conseguir, atribui a padrão 8080
+const port = process.env.PORT || 8080
 
-const server  = http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'})
-    res.end(rotas[req.url])
-})
-
-server.listen(port, ()=>{
-    console.log(`Servidor escutando na porta em http://localhost${port}`)
+app.listen(port, ()=>{
+    console.log(`Servidor escutando na porta em http://localhost:${port}`)
 })
